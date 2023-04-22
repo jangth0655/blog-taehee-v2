@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiMoon, HiSun } from 'react-icons/hi';
+import { HiMoon, HiSun, HiBars3 } from 'react-icons/hi2';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const navItems = [
   {
@@ -22,8 +23,10 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const { windowSize } = useWindowSize();
+  const responSiveNav = windowSize && windowSize < 710;
   return (
-    <nav className='flex items-center justify-between text-neutral-800'>
+    <nav className='flex items-center justify-between text-neutral-800 relative'>
       <div className='flex items-center space-x-4 px-2 py-8'>
         <Image
           src='/image/logo.png'
@@ -35,16 +38,25 @@ const Navbar = () => {
         <p className='font-bold text-xl'>TaeHee Blog</p>
       </div>
 
-      <ul className='flex items-center space-x-8'>
-        {navItems.map((nav) => (
-          <Link href={nav.path} key={nav.path}>
-            <li className='font-semibold'>{nav.title}</li>
-          </Link>
-        ))}
-        <div>
-          <HiMoon className='text-2xl' />
+      {!responSiveNav && (
+        <ul className='flex items-center space-x-8 mr-14'>
+          {navItems.map((nav) => (
+            <Link href={nav.path} key={nav.path}>
+              <li className='font-semibold'>{nav.title}</li>
+            </Link>
+          ))}
+        </ul>
+      )}
+
+      {responSiveNav && (
+        <div className='mr-14'>
+          <HiBars3 className='text-3xl cursor-pointer hover:scale-110 transition-all' />
         </div>
-      </ul>
+      )}
+
+      <div className='absolute flex items-center right-0'>
+        <HiMoon className='text-2xl' />
+      </div>
     </nav>
   );
 };
