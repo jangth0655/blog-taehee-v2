@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiMoon, HiSun, HiBars3 } from 'react-icons/hi2';
 import { useWindowSize } from '../hooks/useWindowSize';
+import { useState } from 'react';
+import Sidebar from './Sidebar';
 
 const navItems = [
   {
@@ -24,6 +26,7 @@ const navItems = [
 
 const Navbar = () => {
   const { windowSize } = useWindowSize();
+  const [openSidebar, setOpenSidebar] = useState(false);
   const responSiveNav = windowSize && windowSize < 710;
   return (
     <nav className='flex items-center justify-between text-neutral-800 relative'>
@@ -49,10 +52,15 @@ const Navbar = () => {
       )}
 
       {responSiveNav && (
-        <div className='mr-14 text-3xl'>
+        <div
+          onClick={() => setOpenSidebar(true)}
+          className='mr-14 text-3xl cursor-pointer hover:scale-105 transition-all'
+        >
           <HiBars3 />
         </div>
       )}
+
+      <Sidebar isActive={openSidebar} setIsActive={setOpenSidebar} />
 
       <div className='absolute flex items-center right-0'>
         <HiMoon className='text-2xl' />
