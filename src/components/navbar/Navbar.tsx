@@ -5,7 +5,7 @@ import { useWindowSize } from '../hooks/useWindowSize';
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 
-const navItems = [
+export const navItems = [
   {
     title: 'Blog',
     path: '/',
