@@ -49,8 +49,8 @@ const Navbar = () => {
       )}
 
       {responSiveNav && (
-        <div className='mr-14'>
-          <HiBars3 className='text-3xl cursor-pointer hover:scale-110 transition-all' />
+        <div className='mr-14 text-3xl'>
+          <HiBars3 />
         </div>
       )}
 
