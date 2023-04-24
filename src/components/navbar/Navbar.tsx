@@ -29,13 +29,15 @@ const Navbar = () => {
   return (
     <nav className='flex items-center justify-between text-neutral-800 relative'>
       <div className='flex items-center space-x-4 px-2 py-8'>
-        <Image
-          src='/image/logo.png'
-          width={60}
-          height={60}
-          alt='logo'
-          priority
-        />
+        <Link href='/'>
+          <Image
+            src='/image/logo.png'
+            width={60}
+            height={60}
+            alt='logo'
+            priority
+          />
+        </Link>
         <p className='font-bold text-xl'>TaeHee Blog</p>
       </div>
 
