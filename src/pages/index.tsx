@@ -1,9 +1,24 @@
 import Layout from '@/components/Layout';
+import PostList from '@/components/PostList';
+import { getPosts } from '@/service/posts';
+import { NextPage } from 'next';
 
-export default function HomePage() {
+const HomePage: NextPage = (post) => {
   return (
     <Layout>
-      <h1 className='text-2xl text-red-600'>Homepage</h1>
+      <PostList />
     </Layout>
   );
+};
+
+export default HomePage;
+
+export async function getStaticProps() {
+  const res = await getPosts();
+  console.log(res);
+  return {
+    props: {
+      post: 'post',
+    },
+  };
 }
