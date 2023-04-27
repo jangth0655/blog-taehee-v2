@@ -4,10 +4,13 @@ import { getPosts } from '@/service/posts';
 import { Posts } from '@/types/post';
 import { GetStaticProps, NextPage } from 'next';
 
-const HomePage: NextPage<{ posts: Posts }> = ({ posts }) => {
+const HomePage: NextPage<{ posts: Posts; total: number }> = ({
+  posts,
+  total,
+}) => {
   return (
     <Layout>
-      <PostList posts={posts} />
+      <PostList posts={posts} total={total} />
     </Layout>
   );
 };
@@ -18,6 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       posts,
+      total: posts.total,
     },
   };
 };

@@ -5,9 +5,10 @@ import PostItem from './PostItem';
 
 type Props = {
   posts: Posts;
+  total: number;
 };
 
-export default function PostList({ posts }: Props) {
+export default function PostList({ posts, total }: Props) {
   return (
     <section>
       <header className='mt-12'>
@@ -22,6 +23,16 @@ export default function PostList({ posts }: Props) {
           <PostItem key={post.path} post={post} />
         ))}
       </ul>
+
+      <div className='flex items-center justify-between'>
+        <button>이전</button>
+        <div className='flex items-center'>
+          <span>1</span>
+          <span className='mx-2'>of</span>
+          <span>{total}</span>
+        </div>
+        <button>다음</button>
+      </div>
     </section>
   );
 }

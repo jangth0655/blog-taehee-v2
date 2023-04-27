@@ -9,7 +9,7 @@ const Layout = ({ children }: Props) => {
     <section>
       <main className='max-w-[640px] px-6 sm:max-w-7xl m-auto'>
         <Navbar />
-        <div>{children}</div>
+        <div className='pb-10'>{children}</div>
       </main>
     </section>
   );
