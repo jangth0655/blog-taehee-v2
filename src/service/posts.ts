@@ -8,6 +8,7 @@ export const getPosts = async () => {
     const [slug, _] = fileName.split('.');
     return {
       ...matter(content).data,
+      date: matter(content).data.date.toISOString(),
       slug,
     };
   });
