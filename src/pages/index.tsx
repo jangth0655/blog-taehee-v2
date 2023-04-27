@@ -1,24 +1,25 @@
 import Layout from '@/components/Layout';
 import PostList from '@/components/PostList';
 import { getPosts } from '@/service/posts';
-import { NextPage } from 'next';
+import { Posts } from '@/types/post';
+import { GetStaticProps, NextPage } from 'next';
 
-const HomePage: NextPage = (post) => {
+const HomePage: NextPage<{ posts: Posts }> = ({ posts }) => {
   return (
     <Layout>
-      <PostList />
+      <PostList posts={posts} />
     </Layout>
   );
 };
 
-export default HomePage;
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await getPosts();
 
-export async function getStaticProps() {
-  const res = await getPosts();
-  console.log(res);
   return {
     props: {
-      post: 'post',
+      posts,
     },
   };
-}
+};
+
+export default HomePage;

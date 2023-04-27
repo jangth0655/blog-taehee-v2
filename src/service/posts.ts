@@ -14,7 +14,7 @@ export const getPosts = async () => {
   });
 
   return {
-    posts,
+    data: posts,
     total: posts?.length,
   };
 };

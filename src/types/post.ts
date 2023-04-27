@@ -8,5 +8,5 @@ export type Post = {
 };
 
 export type Posts = {
-  posts: Post[];
+  data: Post[];
 };
