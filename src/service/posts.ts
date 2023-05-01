@@ -19,4 +19,17 @@ export const getPosts = async () => {
   };
 };
 
+export const getPostPaths = async () => {
+  const files = readdirSync('./data/posts');
+  const paths = files.map((file) => {
+    const content = readFileSync(`./data/posts/${file}`, 'utf-8');
+    return {
+      params: {
+        slug: matter(content).data.path,
+      },
+    };
+  });
+  return paths;
+};
+
 export const getPost = async (slug: string) => {};
