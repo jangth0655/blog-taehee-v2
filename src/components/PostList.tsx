@@ -1,7 +1,9 @@
-import { Posts } from '@/types/post';
+'use client';
+
 import SearchForm from './SearchForm';
 import { dateFormat } from '@/utils/dateFormat';
 import PostItem from './PostItem';
+import { Posts } from '@/types/post';
 
 type Props = {
   posts: Posts;
@@ -19,7 +21,7 @@ export default function PostList({ posts, total }: Props) {
       <div className='w-full h-[0.8px] bg-gray-200 my-20' />
 
       <ul>
-        {posts.data.map((post) => (
+        {posts?.data.map((post) => (
           <PostItem key={post.path} post={post} />
         ))}
       </ul>

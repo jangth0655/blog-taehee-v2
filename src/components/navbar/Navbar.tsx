@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiMoon, HiSun, HiBars3 } from 'react-icons/hi2';
