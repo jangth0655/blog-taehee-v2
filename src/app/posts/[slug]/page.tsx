@@ -7,7 +7,8 @@ type Props = {
 };
 
 export default async function Post({ params }: Props) {
-  const post = await getPost(params.slug);
+  const slug = await getPost(params.slug);
+
   return <h1>{params.slug}</h1>;
 }
 

@@ -2,10 +2,11 @@ import { Post } from '@/types/post';
 import { readFileSync, readdirSync } from 'fs';
 import matter from 'gray-matter';
 
-export const getPosts = async () => {
+export const getPosts = async (): Promise<{ data: Post[]; total: number }> => {
   const filePath = readdirSync('./data/posts');
   const posts = filePath.map((fileName) => {
     const content = readFileSync(`./data/posts/${fileName}`, 'utf-8');
+
     const [slug, _] = fileName.split('.');
     return {
       ...matter(content).data,
@@ -32,5 +33,6 @@ export const getPostPaths = async () => {
 };
 
 export const getPost = async (slug: string) => {
-  console.log('slug', slug);
+  const content = readFileSync(`./data/posts/${slug}.md`, 'utf-8');
+  console.log(matter(content).data);
 };
