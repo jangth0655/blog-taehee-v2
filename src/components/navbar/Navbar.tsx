@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className='flex items-center justify-between text-neutral-800 relative'>
       <div className='flex items-center space-x-4 px-2 py-8'>
-        <Link href='/'>
+        <Link href='/' as='/'>
           <Image
             src='/image/logo.png'
             width={60}
@@ -45,7 +45,7 @@ const Navbar = () => {
 
       <ul className='hidden md:flex items-center space-x-8 mr-14'>
         {navItems.map((nav) => (
-          <Link href={nav.path} key={nav.path}>
+          <Link href={nav.path} key={nav.path} as={nav.path}>
             <li className='font-semibold'>{nav.title}</li>
           </Link>
         ))}

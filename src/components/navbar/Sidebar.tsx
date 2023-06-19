@@ -30,7 +30,12 @@ const Sidebar = ({ isActive, setIsActive }: Props) => {
 
         <ul className='z-10 absolute top-32 left-10'>
           {navItems.map((item, index) => (
-            <Link key={index} onClick={closeSideBar} href={item.path}>
+            <Link
+              key={index}
+              onClick={closeSideBar}
+              href={item.path}
+              as={item.path}
+            >
               <li className='text-3xl font-semibold cursor-pointer mb-10'>
                 {item.title}
               </li>
