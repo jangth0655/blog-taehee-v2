@@ -2,7 +2,14 @@ import { Post } from '@/types/post';
 import { readFileSync, readdirSync } from 'fs';
 import matter from 'gray-matter';
 
-export const getPosts = async (): Promise<{ data: Post[]; total: number }> => {
+type GetPosts = {
+  data: Post[];
+  total: number;
+};
+
+type GetPost = { metaData: Post; contents: string };
+
+export const getPosts = async (): Promise<GetPosts> => {
   const filePath = readdirSync('./data/posts');
   const posts = filePath.map((fileName) => {
     const content = readFileSync(`./data/posts/${fileName}`, 'utf-8');
@@ -21,7 +28,7 @@ export const getPosts = async (): Promise<{ data: Post[]; total: number }> => {
   };
 };
 
-export const getPostPaths = async () => {
+export const getPostPaths = async (): Promise<{ slug: string }[]> => {
   const files = readdirSync('./data/posts');
   const paths = files.map((file) => {
     const content = readFileSync(`./data/posts/${file}`, 'utf-8');
@@ -32,7 +39,11 @@ export const getPostPaths = async () => {
   return paths;
 };
 
-export const getPost = async (slug: string) => {
+export const getPost = async (slug: string): Promise<GetPost> => {
   const content = readFileSync(`./data/posts/${slug}.md`, 'utf-8');
-  console.log(matter(content).data);
+
+  return {
+    metaData: matter(content).data as Post,
+    contents: matter(content).content as string,
+  };
 };
