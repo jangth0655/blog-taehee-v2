@@ -15,7 +15,7 @@ const notoSans = Noto_Sans({
 const Layout = ({ children }: Props) => {
   return (
     <html className={notoSans.className}>
-      <body className='max-w-[640px] px-6 sm:max-w-7xl m-auto'>
+      <body className='max-w-[640px] px-6 sm:max-w-3xl xl:max-w-5xl m-auto'>
         <Navbar />
         <div className='pb-10'>{children}</div>
       </body>

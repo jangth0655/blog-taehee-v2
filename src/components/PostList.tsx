@@ -14,7 +14,7 @@ export default function PostList({ posts, total }: Props) {
   return (
     <section>
       <header className='mt-12'>
-        <h1 className='font-bold text-4xl'>All Posts</h1>
+        <h1 className='font-bold text-4xl xl:text-6xl'>All Posts</h1>
         <SearchForm />
       </header>
 
@@ -26,7 +26,7 @@ export default function PostList({ posts, total }: Props) {
         ))}
       </ul>
 
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center justify-between mt-32'>
         <button>이전</button>
         <div className='flex items-center'>
           <span>1</span>
