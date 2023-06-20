@@ -7,11 +7,15 @@ type Props = {
 };
 
 export default async function Post({ params }: Props) {
-  const slug = await getPost(params.slug);
+  const { contents, metaData } = await getPost(params.slug);
 
   return <h1>{params.slug}</h1>;
 }
 
 export async function generateStaticParams() {
-  return await getPostPaths();
+  const result = await getPostPaths();
+
+  return result.map((path) => ({
+    slug: path.slug,
+  }));
 }
