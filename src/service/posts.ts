@@ -2,7 +2,7 @@ import { Post } from '@/types/post';
 import { readFileSync, readdirSync } from 'fs';
 import matter from 'gray-matter';
 
-type GetPosts = {
+export type GetPosts = {
   data: Post[];
   total: number;
 };

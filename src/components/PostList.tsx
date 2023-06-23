@@ -1,9 +1,10 @@
 'use client';
 
 import SearchForm from './SearchForm';
-import { dateFormat } from '@/utils/dateFormat';
 import PostItem from './PostItem';
 import { Posts } from '@/types/post';
+import Pagination, { FIRST_PAGE, OFFSET } from './Pagination';
+import { useRef, useState } from 'react';
 
 type Props = {
   posts: Posts;
@@ -11,30 +12,37 @@ type Props = {
 };
 
 export default function PostList({ posts, total }: Props) {
+  const [page, setPage] = useState(FIRST_PAGE);
+  const maxPage = Math.ceil(total / OFFSET);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const moveTop = () => {
+    headerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  };
+
   return (
     <section>
-      <header className='mt-12'>
+      <header ref={headerRef} className='mt-12'>
         <h1 className='font-bold text-4xl xl:text-6xl'>All Posts</h1>
         <SearchForm />
       </header>
 
       <div className='w-full h-[0.8px] bg-gray-200 my-20' />
 
-      <ul>
-        {posts?.data.map((post) => (
-          <PostItem key={post.path} post={post} />
-        ))}
+      <ul className='min-h-screen'>
+        {posts?.data
+          .slice(page * OFFSET, OFFSET + page * OFFSET)
+          .map((post) => (
+            <PostItem key={post.path} post={post} />
+          ))}
       </ul>
 
-      <div className='flex items-center justify-between mt-32'>
-        <button>이전</button>
-        <div className='flex items-center'>
-          <span>1</span>
-          <span className='mx-2'>of</span>
-          <span>{total}</span>
-        </div>
-        <button>다음</button>
-      </div>
+      <Pagination
+        maxPage={maxPage}
+        page={page}
+        moveTop={moveTop}
+        setPage={setPage}
+      />
     </section>
   );
 }
