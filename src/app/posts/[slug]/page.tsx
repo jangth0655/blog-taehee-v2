@@ -1,3 +1,4 @@
+import PostDetail from '@/components/PostDetail';
 import { getPost, getPostPaths } from '@/service/posts';
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 export default async function Post({ params }: Props) {
   const { contents, metaData } = await getPost(params.slug);
 
-  return <h1>{params.slug}</h1>;
+  return <PostDetail contents={contents} metaData={metaData} />;
 }
 
 export async function generateStaticParams() {

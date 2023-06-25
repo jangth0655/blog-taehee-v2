@@ -7,5 +7,5 @@ export const dateFormat = (date: Date) => {
 
 export const formatMMMdYYYt = (date: Date) => {
   const convertDate = new Date(date);
-  return format(convertDate, 'MMMM d, yyyy');
+  return format(convertDate, 'EEEE MMMM d, yyyy');
 };

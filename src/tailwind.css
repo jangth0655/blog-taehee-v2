@@ -1,0 +1,3 @@
+.bgTrans {
+  @apply bg-opacity-30 bg-secondary;
+}
