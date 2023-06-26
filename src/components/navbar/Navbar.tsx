@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiBars3 } from 'react-icons/hi2';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Sidebar from './Sidebar';
 import ToggleTheme from '../ToggleTheme';
 
@@ -55,12 +55,11 @@ const Navbar = () => {
       </ul>
 
       <div
-        onClick={() => setOpenSidebar(true)}
+        onClick={() => setOpenSidebar((prev) => !prev)}
         className='md:hidden mr-14 text-3xl cursor-pointer hover:scale-105 transition-all dark:text-white'
       >
         <HiBars3 />
       </div>
-
       <Sidebar isActive={openSidebar} setIsActive={setOpenSidebar} />
       <ToggleTheme />
     </nav>

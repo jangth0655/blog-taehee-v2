@@ -27,7 +27,7 @@ export default function PostList({ posts, total }: Props) {
         <SearchForm />
       </header>
 
-      <div className='w-full h-[0.8px] bg-gray-200 my-20' />
+      <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 my-20' />
 
       <ul className='min-h-screen'>
         {posts?.data

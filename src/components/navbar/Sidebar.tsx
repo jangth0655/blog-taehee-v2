@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
-import ModalPortal from '../ModalPortal';
+import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { navItems } from './Navbar';
 import Link from 'next/link';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 type Props = {
   isActive: boolean;
@@ -10,40 +10,45 @@ type Props = {
 };
 
 const Sidebar = ({ isActive, setIsActive }: Props) => {
-  const handleSideBar = () => {
-    setIsActive((prev) => !prev);
-  };
-  const closeSideBar = () => {
+  const { windowSize } = useWindowSize();
+
+  const closeSideBar = useCallback(() => {
     setIsActive(false);
-  };
+  }, [setIsActive]);
+
+  useEffect(() => {
+    if (windowSize >= 768) {
+      closeSideBar();
+    }
+  }, [closeSideBar, windowSize]);
 
   return (
-    <ModalPortal>
-      <section
-        className={`${
-          isActive ? 'scale-x-100' : 'scale-x-0'
-        } origin-right transition-all fixed w-full h-full top-0 md:hidden`}
+    <section
+      className={`${
+        isActive ? 'scale-x-100' : 'scale-x-0'
+      } origin-right transition-all duration-200 fixed w-full h-full top-0 md:hidden z-10`}
+    >
+      <main className='bg-neutral-950 opacity-90 w-full h-full' />
+      <div
+        onClick={closeSideBar}
+        className='absolute top-12 right-20 cursor-pointer text-gray-300'
       >
-        <div
-          onClick={closeSideBar}
-          className='absolute top-12 right-20 cursor-pointer z-10 '
-        >
-          <AiOutlineClose className='text-4xl' />
-        </div>
+        <AiOutlineClose className='text-4xl' />
+      </div>
 
-        <ul className='z-10 absolute top-32 left-10'>
-          {navItems.map((item, index) => (
-            <Link key={index} href={item.path} as={item.path}>
-              <li className='text-3xl font-semibold cursor-pointer mb-10'>
-                {item.title}
-              </li>
-            </Link>
-          ))}
-        </ul>
-
-        <main className='bg-neutral-300 opacity-90 w-full h-full' />
-      </section>
-    </ModalPortal>
+      <ul className='z-10 absolute top-32 left-10'>
+        {navItems.map((item, index) => (
+          <Link key={index} href={item.path} as={item.path}>
+            <li
+              onClick={closeSideBar}
+              className='text-3xl font-semibold cursor-pointer mb-10 text-gray-300'
+            >
+              {item.title}
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </section>
   );
 };
 export default Sidebar;
