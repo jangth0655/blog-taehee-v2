@@ -1,3 +1,5 @@
+'use client';
+
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 
 export default function SearchForm() {
@@ -5,7 +7,7 @@ export default function SearchForm() {
     <form className='mt-4'>
       <div className='relative border-2 rounded-lg w-3/4 md:w-3/5'>
         <input
-          className='px-4 py-2 w-full outline-none'
+          className='px-4 py-2 w-full outline-none dark:text-black dark:bg-white dark:border-0'
           placeholder='Search article'
           type='text'
         />

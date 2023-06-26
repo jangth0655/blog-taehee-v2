@@ -10,6 +10,9 @@ type Props = {
 };
 
 const Sidebar = ({ isActive, setIsActive }: Props) => {
+  const handleSideBar = () => {
+    setIsActive((prev) => !prev);
+  };
   const closeSideBar = () => {
     setIsActive(false);
   };
@@ -23,19 +26,14 @@ const Sidebar = ({ isActive, setIsActive }: Props) => {
       >
         <div
           onClick={closeSideBar}
-          className='absolute top-12 right-20 cursor-pointer z-10'
+          className='absolute top-12 right-20 cursor-pointer z-10 '
         >
           <AiOutlineClose className='text-4xl' />
         </div>
 
         <ul className='z-10 absolute top-32 left-10'>
           {navItems.map((item, index) => (
-            <Link
-              key={index}
-              onClick={closeSideBar}
-              href={item.path}
-              as={item.path}
-            >
+            <Link key={index} href={item.path} as={item.path}>
               <li className='text-3xl font-semibold cursor-pointer mb-10'>
                 {item.title}
               </li>

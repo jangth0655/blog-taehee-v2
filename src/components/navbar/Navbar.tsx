@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiMoon, HiSun, HiBars3 } from 'react-icons/hi2';
+import { HiBars3 } from 'react-icons/hi2';
 import { useState } from 'react';
 import Sidebar from './Sidebar';
+import ToggleTheme from '../ToggleTheme';
 
 export const navItems = [
   {
@@ -40,29 +41,28 @@ const Navbar = () => {
             priority
           />
         </Link>
-        <p className='font-bold text-xl'>TaeHee Blog</p>
+        <p className='font-bold text-xl dark:text-white'>TaeHee Blog</p>
       </div>
 
       <ul className='hidden md:flex items-center space-x-8 mr-14'>
         {navItems.map((nav) => (
           <Link href={nav.path} key={nav.path} as={nav.path}>
-            <li className='font-semibold'>{nav.title}</li>
+            <li className='text-gray-500 hover:text-gray-900 dark:text-gray-200 transition-all p-1 hover:dark:text-white'>
+              {nav.title}
+            </li>
           </Link>
         ))}
       </ul>
 
       <div
         onClick={() => setOpenSidebar(true)}
-        className='md:hidden mr-14 text-3xl cursor-pointer hover:scale-105 transition-all'
+        className='md:hidden mr-14 text-3xl cursor-pointer hover:scale-105 transition-all dark:text-white'
       >
         <HiBars3 />
       </div>
 
       <Sidebar isActive={openSidebar} setIsActive={setOpenSidebar} />
-
-      <div className='absolute flex items-center right-0'>
-        <HiMoon className='text-2xl' />
-      </div>
+      <ToggleTheme />
     </nav>
   );
 };
