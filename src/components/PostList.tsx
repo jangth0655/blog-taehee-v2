@@ -17,7 +17,6 @@ export type Form = {
 
 export default function PostList({ posts, total }: Props) {
   const [page, setPage] = useState(FIRST_PAGE);
-  const maxPage = Math.ceil(total / OFFSET);
   const headerRef = useRef<HTMLDivElement>(null);
   const [searchValue, seetSearchValue] = useState<Form>({
     keyword: undefined,
@@ -35,9 +34,18 @@ export default function PostList({ posts, total }: Props) {
 
   const searchPosts =
     searchValue.keyword &&
-    posts.data.filter((post) => post.title.includes(searchValue.keyword || ''));
+    searchValue.keyword !== '' &&
+    posts.data.filter((post) => {
+      const { category, title } = post;
+      return (
+        post.category.includes(searchValue.keyword || '') ||
+        post.title.includes(searchValue.keyword || '')
+      );
+    });
 
   const filterPosts = searchPosts || posts.data;
+  const notPosts = filterPosts.length <= 0;
+  const maxPage = Math.ceil(filterPosts.length / OFFSET);
 
   return (
     <section>
@@ -48,20 +56,32 @@ export default function PostList({ posts, total }: Props) {
 
       <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 my-20' />
 
-      <ul className='min-h-screen'>
-        {filterPosts
-          .slice(page * OFFSET, OFFSET + page * OFFSET)
-          .map((post) => (
-            <PostItem key={post.path} post={post} />
-          ))}
-      </ul>
+      {notPosts ? (
+        <div>
+          <span className='text-lg'>
+            다른 <strong className='text-amber-500'>키워드로 검색</strong>하거나{' '}
+            <strong className='text-amber-500'>카테고리를 선택</strong>해주세요!
+            😂😂
+          </span>
+        </div>
+      ) : (
+        <ul className='min-h-screen'>
+          {filterPosts
+            .slice(page * OFFSET, OFFSET + page * OFFSET)
+            .map((post) => (
+              <PostItem key={post.path} post={post} />
+            ))}
+        </ul>
+      )}
 
-      <Pagination
-        maxPage={maxPage}
-        page={page}
-        moveTop={moveTop}
-        setPage={setPage}
-      />
+      {!notPosts && (
+        <Pagination
+          maxPage={maxPage}
+          page={page}
+          moveTop={moveTop}
+          setPage={setPage}
+        />
+      )}
     </section>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import cls from '@/utils/cls';
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 
 type Props = {
   maxPage?: number;
@@ -28,6 +28,10 @@ export default function Pagination({ maxPage, page, setPage, moveTop }: Props) {
     setPage((prev) => (prev === FIRST_PAGE ? FIRST_PAGE : prev - 1));
     moveTop && moveTop();
   }, [isStart, moveTop, setPage]);
+
+  useEffect(() => {
+    setPage(0);
+  }, [maxPage, setPage]);
 
   return (
     <div className='flex items-center justify-between mt-32'>

@@ -28,7 +28,7 @@ export default function SearchForm({ handleSearchValue }: Props) {
         <input
           value={keyword}
           onChange={handleChange}
-          className='px-4 py-2 w-full outline-none dark:text-black dark:bg-white dark:border-0'
+          className='px-4 py-2 pr-20 w-full outline-none dark:text-black dark:bg-white dark:border-0'
           placeholder='Search article'
           type='text'
         />
