@@ -7,27 +7,24 @@ type Props = {
   maxPage?: number;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
-  moveTop?: () => void;
 };
 
 export const FIRST_PAGE = 0;
 export const OFFSET = 5;
 
-export default function Pagination({ maxPage, page, setPage, moveTop }: Props) {
+export default function Pagination({ maxPage, page, setPage }: Props) {
   const isStart = page === 0;
   const isLast = page + 1 === maxPage;
 
   const handleNextPage = useCallback(() => {
     if (isLast) return;
     setPage((prev) => (prev === maxPage ? maxPage : prev + 1));
-    moveTop && moveTop();
-  }, [isLast, maxPage, moveTop, setPage]);
+  }, [isLast, maxPage, setPage]);
 
   const handlePreviewPage = useCallback(() => {
     if (isStart) return;
     setPage((prev) => (prev === FIRST_PAGE ? FIRST_PAGE : prev - 1));
-    moveTop && moveTop();
-  }, [isStart, moveTop, setPage]);
+  }, [isStart, setPage]);
 
   useEffect(() => {
     setPage(0);

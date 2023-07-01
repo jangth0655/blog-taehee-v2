@@ -4,8 +4,9 @@ import SearchForm from './SearchForm';
 import PostItem from './PostItem';
 import { Post, Posts } from '@/types/post';
 import Pagination, { FIRST_PAGE, OFFSET } from './Pagination';
-import { useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Categories from './Categories';
+import { NavbarContext } from '@/context/NavbarContext';
 
 type Props = {
   posts: Posts;
@@ -18,20 +19,27 @@ export type Form = {
 
 export default function PostList({ posts }: Props) {
   const [page, setPage] = useState(FIRST_PAGE);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [searchValue, seetSearchValue] = useState<Form>({
+  const [searchValue, setSearchValue] = useState<Form>({
     keyword: undefined,
   });
+  const navContext = useContext(NavbarContext);
 
-  const moveTop = () => {
-    headerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
+  const moveTop = useCallback(() => {
+    navContext?.refObj?.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, [navContext?.refObj]);
 
   const handleSearchValue = (keyword: string) => {
-    seetSearchValue({
+    setSearchValue({
       keyword,
     });
   };
+
+  useEffect(() => {
+    moveTop();
+  }, [moveTop, searchValue]);
 
   const searchPosts: Post[] =
     searchValue && searchValue.keyword !== ''
@@ -55,7 +63,7 @@ export default function PostList({ posts }: Props) {
 
   return (
     <section>
-      <header ref={headerRef} className='mt-12'>
+      <header className='mt-12'>
         <h1 className='font-bold text-4xl xl:text-6xl'>All Posts</h1>
         <SearchForm handleSearchValue={handleSearchValue} />
       </header>
@@ -65,31 +73,28 @@ export default function PostList({ posts }: Props) {
       </div>
       <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mb-20' />
 
-      {notPosts ? (
-        <div>
-          <span className='text-lg'>
-            다른 <strong className='text-amber-500'>키워드로 검색</strong>하거나{' '}
-            <strong className='text-amber-500'>카테고리를 선택</strong>해주세요!
-            😂😂
-          </span>
-        </div>
-      ) : (
-        <ul className='min-h-screen'>
-          {filteredPosts()
-            .slice(page * OFFSET, OFFSET + page * OFFSET)
-            .map((post) => (
-              <PostItem key={post.path} post={post} />
-            ))}
-        </ul>
-      )}
+      <div>
+        {notPosts ? (
+          <div>
+            <span className='text-lg'>
+              다른 <strong className='text-amber-500'>키워드로 검색</strong>
+              하거나 <strong className='text-amber-500'>카테고리를 선택</strong>
+              해주세요! 😂😂
+            </span>
+          </div>
+        ) : (
+          <ul>
+            {filteredPosts()
+              .slice(page * OFFSET, OFFSET + page * OFFSET)
+              .map((post) => (
+                <PostItem key={post.path} post={post} />
+              ))}
+          </ul>
+        )}
+      </div>
 
       {!notPosts && (
-        <Pagination
-          maxPage={maxPage}
-          page={page}
-          moveTop={moveTop}
-          setPage={setPage}
-        />
+        <Pagination maxPage={maxPage} page={page} setPage={setPage} />
       )}
     </section>
   );
