@@ -64,7 +64,7 @@ export default function PostList({ posts }: Props) {
   return (
     <section>
       <header className='mt-12'>
-        <h1 className='font-bold text-4xl xl:text-6xl'>All Posts</h1>
+        <h1 className='font-bold text-4xl xl:text-5xl'>All Posts</h1>
         <SearchForm handleSearchValue={handleSearchValue} />
       </header>
 

@@ -19,7 +19,7 @@ export default function PostItem({ post }: Props) {
 
   return (
     <li className='mb-16 last:mb-0 xl:flex items-start'>
-      <div className='hidden xl:block mr-48 mt-2 '>
+      <div className='hidden xl:block mr-48 mt-2 w-56 text-center px-1'>
         <span className='text-gray-400 text-md'>{formatMMMdYYYt(date)}</span>
       </div>
       <div>

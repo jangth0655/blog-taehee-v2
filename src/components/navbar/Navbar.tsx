@@ -38,7 +38,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div ref={navRef} className='absolute border-2 h-1 left-0 top-0' />
+      <div ref={navRef} className='absolute left-0 top-0 w-full' />
       <nav className='flex items-center justify-between text-neutral-800 relative'>
         <div className='flex items-center space-x-4 px-2 py-8'>
           <Link href='/' as='/'>
