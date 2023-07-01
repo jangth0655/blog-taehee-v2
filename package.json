@@ -30,11 +30,13 @@
     "remark-emoji": "^3.1.2",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.32.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "@types/uuid": "^9.0.2",
     "tailwindcss": "^3.3.2"
   }
 }

@@ -2,7 +2,7 @@
 title: react native Best Practice!
 description: 리액트를 정확하게 사용하는 방법들을 정리
 date: 2023-04-15
-category: react
+category: react native
 path: best-react-practice5
 featured: true
 ---

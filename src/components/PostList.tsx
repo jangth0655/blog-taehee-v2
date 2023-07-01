@@ -2,9 +2,10 @@
 
 import SearchForm from './SearchForm';
 import PostItem from './PostItem';
-import { Posts } from '@/types/post';
+import { Post, Posts } from '@/types/post';
 import Pagination, { FIRST_PAGE, OFFSET } from './Pagination';
 import { useRef, useState } from 'react';
+import Categories from './Categories';
 
 type Props = {
   posts: Posts;
@@ -15,7 +16,7 @@ export type Form = {
   keyword?: string;
 };
 
-export default function PostList({ posts, total }: Props) {
+export default function PostList({ posts }: Props) {
   const [page, setPage] = useState(FIRST_PAGE);
   const headerRef = useRef<HTMLDivElement>(null);
   const [searchValue, seetSearchValue] = useState<Form>({
@@ -32,20 +33,25 @@ export default function PostList({ posts, total }: Props) {
     });
   };
 
-  const searchPosts =
-    searchValue.keyword &&
-    searchValue.keyword !== '' &&
-    posts.data.filter((post) => {
-      const { category, title } = post;
-      return (
-        post.category.includes(searchValue.keyword || '') ||
-        post.title.includes(searchValue.keyword || '')
-      );
-    });
+  const searchPosts: Post[] =
+    searchValue && searchValue.keyword !== ''
+      ? posts.data.filter((post) => {
+          return (
+            post.category === searchValue.keyword ||
+            post.title === searchValue.keyword
+          );
+        })
+      : [];
 
-  const filterPosts = searchPosts || posts.data;
-  const notPosts = filterPosts.length <= 0;
-  const maxPage = Math.ceil(filterPosts.length / OFFSET);
+  const filteredPosts = () => {
+    if (searchPosts && searchPosts.length > 0) {
+      return searchPosts;
+    }
+    return posts.data;
+  };
+
+  const notPosts = filteredPosts().length <= 0;
+  const maxPage = Math.ceil(filteredPosts().length / OFFSET);
 
   return (
     <section>
@@ -54,7 +60,10 @@ export default function PostList({ posts, total }: Props) {
         <SearchForm handleSearchValue={handleSearchValue} />
       </header>
 
-      <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 my-20' />
+      <div className='mt-20 mb-4'>
+        <Categories posts={posts} handleCategory={handleSearchValue} />
+      </div>
+      <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mb-20' />
 
       {notPosts ? (
         <div>
@@ -66,7 +75,7 @@ export default function PostList({ posts, total }: Props) {
         </div>
       ) : (
         <ul className='min-h-screen'>
-          {filterPosts
+          {filteredPosts()
             .slice(page * OFFSET, OFFSET + page * OFFSET)
             .map((post) => (
               <PostItem key={post.path} post={post} />

@@ -47,20 +47,3 @@ export const getPost = async (slug: string): Promise<GetPost> => {
     contents: matter(content).content as string,
   };
 };
-
-export const searchPost = async (keyword: string) => {
-  const filePath = readdirSync('./data/posts');
-  const posts = filePath.map((fileName) => {
-    const content = readFileSync(`./data/posts/${fileName}`, 'utf-8');
-    const [slug, _] = fileName.split('.');
-    return {
-      ...matter(content).data,
-      date: matter(content).data.date.toISOString(),
-      slug,
-    };
-  });
-
-  return {};
-
-  console.log(posts);
-};
