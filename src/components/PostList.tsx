@@ -7,6 +7,7 @@ import Pagination, { FIRST_PAGE, OFFSET } from './Pagination';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Categories from './Categories';
 import { NavbarContext } from '@/context/NavbarContext';
+import Header from './Header';
 
 type Props = {
   posts: Posts;
@@ -63,15 +64,12 @@ export default function PostList({ posts }: Props) {
 
   return (
     <section>
-      <header className='mt-12'>
-        <h1 className='font-bold text-4xl xl:text-5xl'>All Posts</h1>
+      <Header headerTitle='All Posts'>
         <SearchForm handleSearchValue={handleSearchValue} />
-      </header>
-
-      <div className='mt-20 mb-4'>
-        <Categories posts={posts} handleCategory={handleSearchValue} />
-      </div>
-      <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mb-20' />
+        <div className='mt-20 mb-4'>
+          <Categories posts={posts} handleCategory={handleSearchValue} />
+        </div>
+      </Header>
 
       <div>
         {notPosts ? (

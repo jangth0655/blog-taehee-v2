@@ -1,10 +1,10 @@
 ---
-title: 리액트 Best Practice!
-description: 리액트를 정확하게 사용하는 방법들을 정리
-date: 2023-04-15
-category: react
-path: best-react-practice
-featured: true
+title: React Native 시작!!
+description: 왜 나는 RN을 시작했을까? 어떻게 공부하면 좋을까??
+date: 2023-07-02
+category: react native
+path: start-react-native
+featured: false
 ---
 
 React is a JavaScript library for building user interfaces.
