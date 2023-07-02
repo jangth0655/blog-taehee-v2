@@ -7,60 +7,25 @@ path: start-react-native
 featured: false
 ---
 
-React is a JavaScript library for building user interfaces.
+## 배경
 
-# A Simple Component
+회사에서 웹 react를 활용하여 웹 어드민 페이지를 개발하고 있었다. 열심히 개발하는 중에 모바일 개발도 할 수 있겠느냐 하는 질문을 받았는데, 취준생 시절 react native로 개발 진행을 한 적이 있어 할 수 있다고 대답을 했다. ... 그때 부터 본격적으로 react native을 활용하여 크로스 플랫폼 개발을 진행하게 되었다.
 
-<u>React components</u> implement a `render()` method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by `render()` via `this.props`.
+![develope](https://images.unsplash.com/photo-1512149673953-1e251807ec7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80)
 
-```jsx
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
-  }
-}
+## 방향
 
-root.render(<HelloMessage name='Taylor' />);
-```
+항상 공부할 때 느끼는 것이지만 어떻게 동작하고 왜 이렇게 구현해야하는지, 내부적으로는 어떤식으로 동작되는지 항상 궁금해 했다. 그리고 그 궁금증을 알아가면서 나는 좀 더 성장해 가는 느낌을 받았다.
 
-## Declarative
+우선 리액트를 공부할 때와 마찬가지로 어떻게 자바스크립트와 네이티브 코드가 함께 상호작용하면서 앱을 구현할 수 있는지 알아보기로 했다.
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+## 공부 방법과 시작
 
-A paragraph with _emphasis_ and **strong importance**.
+RN 공식문서, 그리고 구글링을 통한 정보들, RN강의 (노마드 코더, 인프런)를 통해 퇴근 후 약 2주간 짬짬히 공부를 시작했다.
+우선 아래의 몇가지 방법을 포인트를 두고 공부를 시작해보았다.
 
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-- Lists
-- [ ] todo
-- [x] done
-
-## Component-Based
-
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
-
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
-
-## Learn Once, Write Anywhere
-
-We don’t make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
-
-React can also render on the server using Node and power mobile apps using React Native.
-
-![React Office desk](https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)
-
-> The most important addition in React 18 is something we hope you never have to think about: concurrency. We think this is largely true for application developers, though the story may be a bit more complicated for library maintainers.
-
-Concurrency is not a feature, per se. It’s a new behind-the-scenes mechanism that enables React to prepare multiple versions of your UI at the same time. You can think of concurrency as an implementation detail — it’s valuable because of the features that it unlocks. React uses sophisticated techniques in its internal implementation, like priority queues and multiple buffering. But you won’t see those concepts anywhere in our public APIs.
-
-When we design APIs, we try to hide implementation details from developers. As a React developer, you focus on what you want the user experience to look like, and React handles how to deliver that experience. So we don’t expect React developers to know how concurrency works under the hood.
-
-However, Concurrent React is more important than a typical implementation detail — it’s a foundational update to React’s core rendering model. So while it’s not super important to know how concurrency works, it may be worth knowing what it is at a high level.
-
-A key property of Concurrent React is that rendering is interruptible. When you first upgrade to React 18, before adding any concurrent features, updates are rendered the same as in previous versions of React — in a single, uninterrupted, synchronous transaction. With synchronous rendering, once an update starts rendering, nothing can interrupt it until the user can see the result on screen.
-
-In a concurrent render, this is not always the case. React may start rendering an update, pause in the middle, then continue later. It may even abandon an in-progress render altogether. React guarantees that the UI will appear consistent even if a render is interrupted. To do this, it waits to perform DOM mutations until the end, once the entire tree has been evaluated. With this capability, React can prepare new screens in the background without blocking the main thread. This means the UI can respond immediately to user input even if it’s in the middle of a large rendering task, creating a fluid user experience.
-
-Another example is reusable state. Concurrent React can remove sections of the UI from the screen, then add them back later while reusing the previous state. For example, when a user tabs away from a screen and back, React should be able to restore the previous screen in the same state it was in before. In an upcoming minor, we’re planning to add a new component called `<Offscreen>` that implements this pattern. Similarly, you’ll be able to use Offscreen to prepare new UI in the background so that it’s ready before the user reveals it.
-
-Concurrent rendering is a powerful new tool in React and most of our new features are built to take advantage of it, including Suspense, transitions, and streaming server rendering. But React 18 is just the beginning of what we aim to build on this new foundation.
+1. 어떻게 네이티브 코드와 자바스크립트 상호작용하는지
+2. 어떻게 네이티브에서 자바스크립트는 번들링되고 실행하게되는지
+3. 어떻게 네이티브에서 모듈을 생성하고 추가하여 리액트에서 사용할 수 있을지
+4. 네이티브 코드 구조 확인해보기
+5. 간단한 모바일 앱 구현해보기
