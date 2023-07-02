@@ -21,10 +21,6 @@ export const navItems = [
     title: 'Projects',
     path: '/projects',
   },
-  {
-    title: 'Contact',
-    path: '/contact',
-  },
 ];
 
 const Navbar = () => {

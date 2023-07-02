@@ -9,7 +9,7 @@ export default function AboutPage() {
       <Header headerTitle='About'>
         <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mt-6' />
       </Header>
-      <div className='flex justify-center items-center w-80 h-52 rounded-full m-auto relative'>
+      <div className='flex justify-center items-center w-64 h-44 md:w-80 md:h-52 rounded-full m-auto relative'>
         <Image
           src='/image/marin2.jpeg'
           fill
