@@ -6,6 +6,7 @@ export type Post = {
   path: string;
   featured: string;
   slug?: string;
+  image?: string;
 };
 
 export type Posts = {

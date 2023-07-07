@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiBars3 } from 'react-icons/hi2';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Sidebar from './Sidebar';
 import ToggleTheme from '../ToggleTheme';
 import { NavbarContext } from '@/context/NavbarContext';
@@ -46,7 +46,7 @@ const Navbar = () => {
               priority
             />
           </Link>
-          <p className='font-bold text-xl dark:text-white'>TaeHee Blog</p>
+          <p className='font-bold text-xl dark:text-white'>TaeHee(Marin)</p>
         </div>
 
         <ul className='hidden md:flex items-center space-x-8 mr-14'>

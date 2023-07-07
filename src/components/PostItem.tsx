@@ -4,6 +4,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import Link from 'next/link';
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 type Props = {
   post: Post;
@@ -35,10 +36,19 @@ export default function PostItem({ post }: Props) {
               {title}
             </span>
           </div>
-          <span className='text-teal-500 font-thin hover:text-teal-600 transition-all'>
-            {category}
-          </span>
+          <span className='text-emerald-600'>{category}</span>
         </div>
+        {post.image && (
+          <div className='my-2 relative w-96 h-64'>
+            <Image
+              src={post.image}
+              fill
+              alt='blog'
+              style={{ borderRadius: 8, objectFit: 'cover' }}
+              priority
+            />
+          </div>
+        )}
         <p className='text-gray-500 dark:text-gray-300 mt-6 text-ellipsis whitespace-nowrap overflow-hidden'>
           {description}
         </p>
