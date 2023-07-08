@@ -5,6 +5,7 @@ date: 2023-07-02
 category: react native
 path: start-react-native
 featured: false
+image:
 ---
 
 ## 배경
