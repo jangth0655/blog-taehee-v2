@@ -26,9 +26,9 @@ const Sidebar = ({ isActive, setIsActive }: Props) => {
     <section
       className={`${
         isActive ? 'scale-x-100' : 'scale-x-0'
-      } origin-right transition-all duration-200 fixed w-full h-full top-0 md:hidden z-10`}
+      } origin-right transition-all duration-200 fixed w-full h-full top-0 md:hidden left-0 z-50`}
     >
-      <main className='bg-neutral-950 opacity-90 w-full h-full' />
+      <main className='bg-neutral-950 opacity-95 w-full h-full' />
       <div
         onClick={closeSideBar}
         className='absolute top-12 right-20 cursor-pointer text-gray-300'

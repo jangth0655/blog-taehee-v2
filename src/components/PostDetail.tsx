@@ -28,7 +28,7 @@ function PostDetail({ contents, metaData }: Props) {
     <section>
       <header className='text-center space-y-3 pt-5 pb-12 border-b-[0.5px] border-gray-300 dark:border-gray-600'>
         <span className='text-gray-400'>{formatMMMdYYYt(date)}</span>
-        <h1 className='font-bold text-4xl'>{title}</h1>
+        <h1 className='font-bold xl:text-4xl text-3xl'>{title}</h1>
       </header>
       <main className='m-auto mt-12 leading-7 prose lg:prose-base dark:text-gray-300 min-w-full '>
         <MarkDownView contents={contents} />
