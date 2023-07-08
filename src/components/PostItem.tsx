@@ -11,6 +11,7 @@ type Props = {
 };
 
 export default function PostItem({ post }: Props) {
+  console.log(post);
   const router = useRouter();
   const { category, date, description, featured, path, title } = post;
 
@@ -19,7 +20,7 @@ export default function PostItem({ post }: Props) {
   }, [path, router]);
 
   return (
-    <li className='mb-20 last:mb-0 xl:flex items-start'>
+    <li className='mb-16 last:mb-0 xl:flex items-start'>
       <div className='hidden xl:block mr-48 mt-2 w-56 text-center px-1'>
         <span className='text-gray-400 text-md'>{formatMMMdYYYt(date)}</span>
       </div>
@@ -52,7 +53,7 @@ export default function PostItem({ post }: Props) {
         <p className='text-gray-500 dark:text-gray-300 mt-6 text-ellipsis whitespace-nowrap overflow-hidden'>
           {description}
         </p>
-        <div className='mt-2 text-teal-500'>
+        <div className='mt-10 text-teal-500'>
           <Link
             href={`/posts/${path}`}
             as={`/posts/${path}`}
