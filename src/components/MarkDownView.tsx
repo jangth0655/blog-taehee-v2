@@ -65,6 +65,16 @@ export default function MarkDownView({ contents }: Props) {
             </h3>
           );
         },
+        h4({ children, ...props }) {
+          return (
+            <h4
+              {...props}
+              className='font-bold text-neutral-900 dark:text-neutral-200 mb-4'
+            >
+              {children}
+            </h4>
+          );
+        },
         a({ children, ...props }) {
           return (
             <a {...props} className='text-teal-500'>

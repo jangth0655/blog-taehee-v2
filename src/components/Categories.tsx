@@ -22,14 +22,14 @@ export default function Categories({ posts, handleCategory }: Props) {
       <ul className='space-x-6 md:space-x-10 flex items-center overflow-x-scroll'>
         <li
           onClick={() => handleCategory('all')}
-          className='text-pink-500 hover:text-pink-400 transition-all cursor-pointer md:text-lg'
+          className='dark:text-pink-500 text-pink-600 dark:hover:text-pink-400 hover:text-pink-400 transition-all cursor-pointer md:text-lg'
         >
           ALL
         </li>
         {uniqueCategories.map((category) => (
           <li
             onClick={() => handleCategory(category)}
-            className='text-pink-500 hover:text-pink-400 transition-all cursor-pointer md:text-lg'
+            className='dark:text-pink-500 text-pink-600 dark:hover:text-pink-400 hover:text-pink-400 transition-all cursor-pointer md:text-lg'
             key={uuid()}
           >
             {category}

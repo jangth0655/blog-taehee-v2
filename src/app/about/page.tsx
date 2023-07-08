@@ -9,21 +9,15 @@ export default function AboutPage() {
       <Header headerTitle='About'>
         <div className='w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mt-6' />
       </Header>
-      <div className='flex justify-center items-center w-64 h-44 md:w-80 md:h-52 rounded-full m-auto relative'>
-        <Image
-          src='/image/marin2.jpeg'
-          fill
-          alt='logo'
-          priority
-          className='rounded-full'
-        />
+      <div className='flex justify-center items-center w-56 h-56 rounded-full m-auto relative '>
+        <Image src='/image/marin4.png' alt='logo' priority fill />
       </div>
       <div className='mt-10 mb-20 flex flex-col justify-center items-center'>
         <span className='text-xl md:text-2xl font-bold'>TaHee, (Marin)</span>
         <p className='mt-2 text-neutral-500 dark:text-neutral-400'>
           Front End Developer
         </p>
-        <div className='mt-10'>
+        <div className='mt-4'>
           <Link
             href='https://github.com/jangth0655'
             target='_blanck'
