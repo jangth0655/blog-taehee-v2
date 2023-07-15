@@ -7,9 +7,10 @@ import { v4 as uuid } from 'uuid';
 type Props = {
   posts: Posts;
   handleCategory: (category: string) => void;
+  total: number;
 };
 
-export default function Categories({ posts, handleCategory }: Props) {
+export default function Categories({ posts, handleCategory, total }: Props) {
   const uniqueCategories = [
     ...new Set(posts.data.map((post) => post.category)),
   ];
@@ -24,7 +25,7 @@ export default function Categories({ posts, handleCategory }: Props) {
           onClick={() => handleCategory('all')}
           className='dark:text-pink-500 text-pink-600 dark:hover:text-pink-400 hover:text-pink-400 transition-all cursor-pointer md:text-lg'
         >
-          ALL
+          ALL ( {total} )
         </li>
         {uniqueCategories.map((category) => (
           <li

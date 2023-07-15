@@ -18,7 +18,7 @@ export type Form = {
   keyword?: string;
 };
 
-export default function PostList({ posts }: Props) {
+export default function PostList({ posts, total }: Props) {
   const [page, setPage] = useState(FIRST_PAGE);
   const [searchValue, setSearchValue] = useState<Form>({
     keyword: undefined,
@@ -67,7 +67,11 @@ export default function PostList({ posts }: Props) {
       <Header headerTitle='All Posts'>
         <SearchForm handleSearchValue={handleSearchValue} />
         <div className='mt-20 mb-4'>
-          <Categories posts={posts} handleCategory={handleSearchValue} />
+          <Categories
+            posts={posts}
+            total={total}
+            handleCategory={handleSearchValue}
+          />
         </div>
       </Header>
 
