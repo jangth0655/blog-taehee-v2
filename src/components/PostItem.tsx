@@ -10,6 +10,8 @@ type Props = {
   post: Post;
 };
 
+const STANDARD_LENGTH = 100;
+
 export default function PostItem({ post }: Props) {
   const router = useRouter();
   const { category, date, description, featured, path, title } = post;
@@ -18,12 +20,15 @@ export default function PostItem({ post }: Props) {
     router.push(`/posts/${path}`);
   }, [path, router]);
 
+  const sliceDescriptionLength = description.slice(0, 110).length;
+  const sliceDescription = description.slice(0, 110);
+
   return (
     <li className='mb-16 last:mb-0 xl:flex items-start'>
-      <div className='hidden xl:block mr-48 mt-2 w-56 text-center px-1'>
+      <div className='hidden xl:block mr-48 mt-2 w-[30%] text-center px-1 '>
         <span className='text-gray-400 text-md'>{formatMMMdYYYt(date)}</span>
       </div>
-      <div>
+      <div className='w-[70%]'>
         <div className='flex flex-col'>
           <span className='text-gray-400 xl:hidden mb-3'>
             {dateFormat(date)}
@@ -49,14 +54,16 @@ export default function PostItem({ post }: Props) {
             />
           </div>
         )}
-        <p className='text-gray-500 dark:text-gray-300 mt-6 text-ellipsis whitespace-nowrap overflow-hidden'>
-          {description}
+        <p className='text-gray-500 dark:text-gray-300 mt-6 text-ellipsis overflow-hidden '>
+          {sliceDescriptionLength < STANDARD_LENGTH
+            ? sliceDescription
+            : `${sliceDescription}...`}
         </p>
         <div className='mt-2 dark:text-teal-500 text-teal-600 font-bold'>
           <Link
             href={`/posts/${path}`}
             as={`/posts/${path}`}
-            className='flex items-center hover:text-teal-600 transition-all dark:hover:text-teal-300'
+            className='flex items-center  hover:text-teal-500 transition-all dark:hover:text-teal-300'
           >
             <span className='inline-block mr-2'>Read more </span>
             <AiOutlineArrowRight />
