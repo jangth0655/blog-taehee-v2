@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div className="w-full h-[0.8px] dark:bg-gray-600 bg-gray-300 mt-6" />
       </Header>
       <div className="flex justify-center items-center w-56 h-56 rounded-full m-auto relative ">
-        <Image src="/image/marin4.png" alt="logo" priority fill />
+        <Image src="/image/marin3.png" alt="logo" priority fill />
       </div>
       <div className="mt-10 mb-20 flex flex-col justify-center items-center">
         <span className="text-xl md:text-2xl font-bold">TaHee, (Marin)</span>
