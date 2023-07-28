@@ -45,10 +45,7 @@ export default function PostList({ posts, total }: Props) {
   const searchPosts: Post[] =
     searchValue && searchValue.keyword !== ''
       ? posts.data.filter((post) => {
-          return (
-            post.category === searchValue.keyword ||
-            post.title === searchValue.keyword
-          );
+          return post.category.includes(searchValue.keyword || '') || post.title.includes(searchValue.keyword || '');
         })
       : [];
 
@@ -64,23 +61,19 @@ export default function PostList({ posts, total }: Props) {
 
   return (
     <section>
-      <Header headerTitle='All Posts'>
+      <Header headerTitle="All Posts">
         <SearchForm handleSearchValue={handleSearchValue} />
-        <div className='mt-20 mb-4'>
-          <Categories
-            posts={posts}
-            total={total}
-            handleCategory={handleSearchValue}
-          />
+        <div className="mt-20 mb-4">
+          <Categories posts={posts} total={total} handleCategory={handleSearchValue} />
         </div>
       </Header>
 
       <div>
         {notPosts ? (
           <div>
-            <span className='text-lg'>
-              다른 <strong className='text-amber-500'>키워드로 검색</strong>
-              하거나 <strong className='text-amber-500'>카테고리를 선택</strong>
+            <span className="text-lg">
+              다른 <strong className="text-amber-500">키워드로 검색</strong>
+              하거나 <strong className="text-amber-500">카테고리를 선택</strong>
               해주세요! 😂😂
             </span>
           </div>
@@ -95,9 +88,7 @@ export default function PostList({ posts, total }: Props) {
         )}
       </div>
 
-      {!notPosts && (
-        <Pagination maxPage={maxPage} page={page} setPage={setPage} />
-      )}
+      {!notPosts && <Pagination maxPage={maxPage} page={page} setPage={setPage} />}
     </section>
   );
 }
