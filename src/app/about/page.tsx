@@ -19,7 +19,7 @@ export default function AboutPage() {
         <Image src="/image/marin3.png" alt="logo" priority fill />
       </div>
       <div className="mt-10 mb-20 flex flex-col justify-center items-center">
-        <span className="text-xl md:text-2xl font-bold">TaHee, (Marin)</span>
+        <span className="text-xl md:text-2xl font-bold">TaHee</span>
         <p className="mt-2 text-neutral-500 dark:text-neutral-400">Front End Developer</p>
         <div className="mt-4">
           <Link href="https://github.com/jangth0655" target="_blanck" rel="noopener noreferrer">
