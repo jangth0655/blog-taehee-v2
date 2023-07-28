@@ -1,5 +1,5 @@
 ---
-title: RN Android 분석하기 1
+title: RN Android 분석하기 1 (MainApplication)
 description: RN의 안드로이드 MainApplication
 date: 2023-07-23
 category: react native

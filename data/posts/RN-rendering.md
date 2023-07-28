@@ -29,7 +29,7 @@ C++ 앱에서 javascript 엔진을 내장하기 위한 가벼운 API로 Fabric�
 
 React Shadow Node는 자바스크립트로 정의된 UI 컴포넌트를 나타내는 객체이며, 레이아웃 정보, 스타일, Props 등을 포함한 정보를 갖고 있다.
 
-앱이 시작되면 Fabric은 내부적으로 자바스크립트러 정의된 UI 컴포넌트를 기반으로 React Shadow Node 객체를 생성하고 이를 통해 Host View를 생성하여 Host View Tree를 구성한다. 이렇게 생성된 Host View Tree는 실제 화면에 반영한다.
+앱이 시작되면 Fabric은 내부적으로 자바스크립트러 정의된 UI 컴포넌트를 기반으로 React Shadow Node 객체를 생성하고 이를 통해 React Shadow Tree를 구성한다. 이후 네티이브로 전달하여 네이티브에서 Host View를 생성하여 Host View Tree를 구성한다. 이렇게 생성된 Host View Tree는 실제 화면에 반영한다.
 
 </br>
 
