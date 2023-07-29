@@ -45,7 +45,7 @@ export default function PostList({ posts, total }: Props) {
   const searchPosts: Post[] =
     searchValue && searchValue.keyword !== ''
       ? posts.data.filter((post) => {
-          return post.category.includes(searchValue.keyword || '') || post.title.includes(searchValue.keyword || '');
+          return post.category === searchValue.keyword || post.title.includes(searchValue.keyword || '');
         })
       : [];
 
