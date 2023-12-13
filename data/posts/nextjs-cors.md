@@ -2,7 +2,7 @@
 title: CORS와 마주하기
 description: nextjs에서 CORS 회피와 rewrite 알아보기
 date: 2023-08-27
-category: react
+category: runacer
 path: nextjs-cors
 featured: false
 image:
@@ -42,7 +42,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/v1/:path*',
+        source: "/api/v1/:path*",
         destination: `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/:path*`,
       },
     ];
