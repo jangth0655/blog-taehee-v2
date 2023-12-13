@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { HiBars3 } from 'react-icons/hi2';
-import { useContext, useEffect, useRef, useState } from 'react';
-import Sidebar from './Sidebar';
-import ToggleTheme from '../ToggleTheme';
-import { NavbarContext } from '@/context/NavbarContext';
+import Image from "next/image";
+import Link from "next/link";
+import { HiBars3 } from "react-icons/hi2";
+import { useContext, useEffect, useRef, useState } from "react";
+import Sidebar from "./Sidebar";
+import ToggleTheme from "../ToggleTheme";
+import { NavbarContext } from "@/context/NavbarContext";
 
 export const navItems = [
   {
-    title: 'Blog',
-    path: '/',
+    title: "Blog",
+    path: "/",
   },
   {
-    title: 'About',
-    path: '/about',
+    title: "About",
+    path: "/about",
   },
   {
-    title: 'Projects',
-    path: '/projects',
+    title: "Projects",
+    path: "/projects",
   },
 ];
 
@@ -38,9 +38,15 @@ const Navbar = () => {
       <nav className="flex items-center justify-between text-neutral-800 relative">
         <div className="flex items-center space-x-4 px-2 py-8">
           <Link href="/" as="/">
-            <Image src="/image/marin3.png" width={60} height={60} alt="logo" priority />
+            <Image
+              src="/image/marin3.png"
+              width={60}
+              height={60}
+              alt="logo"
+              priority
+            />
           </Link>
-          <p className="font-bold text-xl dark:text-white">TaeHee(Marin)</p>
+          <p className="font-bold text-xl dark:text-white">TaeHee</p>
         </div>
 
         <ul className="hidden md:flex items-center space-x-8 mr-14">

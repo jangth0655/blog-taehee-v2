@@ -1,9 +1,9 @@
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkEmoji from 'remark-emoji';
-import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkEmoji from "remark-emoji";
+import rehypeRaw from "rehype-raw";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type Props = {
   contents: string;
@@ -12,34 +12,35 @@ type Props = {
 export default function MarkDownView({ contents }: Props) {
   return (
     <ReactMarkdown
+      className="leading-8"
       remarkPlugins={[remarkGfm, remarkEmoji]}
       rehypePlugins={[rehypeRaw]}
       components={{
         code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || '');
+          const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter
               language={match[1]}
-              PreTag='div'
+              PreTag="div"
               style={{
                 ...vscDarkPlus,
                 hljs: {
                   ...vscDarkPlus.hljs,
-                  backgroundColor: 'transparents',
+                  backgroundColor: "transparents",
                 },
               }}
             >
-              {String(children).replace(/\n$/, '')}
+              {String(children).replace(/\n$/, "")}
             </SyntaxHighlighter>
           ) : (
-            <code className='text-amber-500'>{children}</code>
+            <code className="text-amber-500">{children}</code>
           );
         },
         h1({ children, ...props }) {
           return (
             <h1
               {...props}
-              className='font-bold text-neutral-900 dark:text-neutral-200 mb-4'
+              className="font-bold text-neutral-900 dark:text-neutral-200 mb-4"
             >
               {children}
             </h1>
@@ -49,7 +50,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <h2
               {...props}
-              className='font-bold text-neutral-900 dark:text-neutral-200 mb-4'
+              className="font-bold text-neutral-900 dark:text-neutral-200 mb-4"
             >
               {children}
             </h2>
@@ -59,7 +60,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <h3
               {...props}
-              className='font-bold text-neutral-900 dark:text-neutral-200 mb-4'
+              className="font-bold text-neutral-900 dark:text-neutral-200 mb-4"
             >
               {children}
             </h3>
@@ -69,7 +70,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <h4
               {...props}
-              className='font-bold text-neutral-900 dark:text-neutral-200 mb-4'
+              className="font-bold text-neutral-900 dark:text-neutral-200 mb-4"
             >
               {children}
             </h4>
@@ -77,7 +78,7 @@ export default function MarkDownView({ contents }: Props) {
         },
         a({ children, ...props }) {
           return (
-            <a {...props} className='text-teal-500'>
+            <a {...props} className="text-teal-500">
               {children}
             </a>
           );
@@ -85,7 +86,7 @@ export default function MarkDownView({ contents }: Props) {
         blockquote({ children, ...props }) {
           return (
             <blockquote
-              className='pl-4 italic font-semibold text-neutral-700 dark:text-neutral-200 dark:bg-transparent  p-2'
+              className="pl-4 italic font-semibold text-neutral-700 dark:text-neutral-200 dark:bg-transparent p-2s"
               {...props}
             >
               {children}
@@ -96,7 +97,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <em
               {...props}
-              className='text-rose-500 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800'
+              className="text-rose-200 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               {children}
             </em>
@@ -106,7 +107,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <strong
               {...props}
-              className='text-rose-500 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800'
+              className="text-rose-300 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               {children}
             </strong>
