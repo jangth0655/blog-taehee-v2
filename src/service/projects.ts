@@ -1,6 +1,6 @@
-import { Post } from '@/types/post';
-import { readFileSync, readdirSync } from 'fs';
-import matter from 'gray-matter';
+import { Post } from "@/types/post";
+import { existsSync, readFileSync, readdirSync } from "fs";
+import matter from "gray-matter";
 
 export type GetProjects = {
   data: Post[];
@@ -9,12 +9,13 @@ export type GetProjects = {
 
 type GetPost = { metaData: Post; contents: string };
 
-export const getProjects = async (): Promise<GetProjects> => {
-  const filePath = readdirSync('./data/projects');
+export const getProjects = async (): Promise<GetProjects | undefined> => {
+  if (!existsSync("./data/projects")) return;
+  const filePath = readdirSync("./data/projects");
   const projects = filePath.map((fileName) => {
-    const content = readFileSync(`./data/projects/${fileName}`, 'utf-8');
+    const content = readFileSync(`./data/projects/${fileName}`, "utf-8");
 
-    const [slug, _] = fileName.split('.');
+    const [slug, _] = fileName.split(".");
     return {
       ...matter(content).data,
       date: matter(content).data.date.toISOString(),
@@ -29,9 +30,9 @@ export const getProjects = async (): Promise<GetProjects> => {
 };
 
 export const getProjectPaths = async (): Promise<{ slug: string }[]> => {
-  const files = readdirSync('./data/projects');
+  const files = readdirSync("./data/projects");
   const paths = files.map((file) => {
-    const content = readFileSync(`./data/projects/${file}`, 'utf-8');
+    const content = readFileSync(`./data/projects/${file}`, "utf-8");
     return {
       slug: matter(content).data.path,
     };
@@ -40,7 +41,7 @@ export const getProjectPaths = async (): Promise<{ slug: string }[]> => {
 };
 
 export const getProject = async (slug: string): Promise<GetPost> => {
-  const content = readFileSync(`./data/projects/${slug}.md`, 'utf-8');
+  const content = readFileSync(`./data/projects/${slug}.md`, "utf-8");
 
   return {
     metaData: matter(content).data as Post,
