@@ -40,7 +40,6 @@ export const getPostPaths = async (): Promise<{ slug: string }[]> => {
 };
 
 export const getPost = async (slug: string): Promise<GetPost> => {
-  console.log(slug);
   const content = readFileSync(`./data/posts/${slug}.md`, "utf-8");
 
   return {

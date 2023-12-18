@@ -97,7 +97,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <em
               {...props}
-              className="text-rose-200 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
+              className="text-emerald-600 dark:text-emerald-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               {children}
             </em>
@@ -107,7 +107,7 @@ export default function MarkDownView({ contents }: Props) {
           return (
             <strong
               {...props}
-              className="text-rose-300 dark:text-rose-400 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
+              className="text-rose-500 dark:text-rose-300 p-[0.2rem] rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               {children}
             </strong>
