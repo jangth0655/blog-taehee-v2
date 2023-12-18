@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { HiMoon, HiSun } from 'react-icons/hi2';
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { HiMoon, HiSun } from "react-icons/hi2";
 
 export default function ToggleTheme() {
   const { theme, setTheme } = useTheme();
@@ -11,13 +11,13 @@ export default function ToggleTheme() {
   useEffect(() => {
     setIsMounted(true);
     if (isMounted) {
-      setTheme('dark');
+      setTheme("dark");
     }
   }, [setTheme, isMounted]);
 
   const toggleDarkMode = () => {
     if (isMounted) {
-      setTheme(theme === 'light' ? 'dark' : 'light');
+      setTheme(theme === "light" ? "dark" : "light");
     }
   };
 
@@ -28,15 +28,15 @@ export default function ToggleTheme() {
   return (
     <div
       onClick={toggleDarkMode}
-      className='absolute flex items-center right-0'
+      className="absolute flex items-center right-0 cursor-pointer"
     >
-      {theme === 'light' ? (
+      {theme === "light" ? (
         <div>
-          <HiMoon className='text-2xl' />
+          <HiMoon className="text-2xl" />
         </div>
       ) : (
-        <div className='text-white'>
-          <HiSun className='text-2xl' />
+        <div className="text-white">
+          <HiSun className="text-2xl" />
         </div>
       )}
     </div>
